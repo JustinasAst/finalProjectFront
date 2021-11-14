@@ -1,0 +1,9 @@
+export { default as Register } from './Register/Register';
+export { default as Login } from './Login/Login';
+export { default as Home } from './Home/Home';
+export { default as Add } from './add/Add';
+export { default as Navigation } from '../component/navigation/Navigation';
+export { default as Button } from '../component/button/Button';
+export { default as Notification } from '../component/notification/Notification';
+export { default as InfoBox } from '../component/box/InfoBox';
+export { default as Form } from '../component/navigation/form/Form';

@@ -1,0 +1,12 @@
+.dataBox {
+	display: flex;
+	margin-top: 3rem;
+	background: #fcf0f0;
+	text-align: center;
+	padding: 1rem;
+	align-content: space-between;
+	box-sizing: border-box;
+	flex-wrap: wrap;
+	width: 80%;
+	margin: 3rem auto;
+}
