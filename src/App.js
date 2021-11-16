@@ -6,7 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 const LazyHome = React.lazy(() => import('./pages/Home/Home'));
 const LazyRegister = React.lazy(() => import('./pages/Register/Register'));
 const LazyLogin = React.lazy(() => import('./pages/Login/Login'));
-const LazyAdd = React.lazy(() => import('./pages/add/Add'));
+const LazyAdd = React.lazy(() => import('./pages/Add/Add'));
 
 function App() {
 	return (
