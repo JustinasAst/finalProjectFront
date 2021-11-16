@@ -59,7 +59,7 @@ const Add = () => {
 					/>
 				</div>
 				<div>
-					<label>Info</label>
+					<label>Description</label>
 					<textarea
 						type='text'
 						placeholder='Description'
