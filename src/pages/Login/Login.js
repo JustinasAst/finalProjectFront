@@ -28,7 +28,7 @@ const Login = () => {
 								return alert('no data');
 							}
 							authContex.setToken(data.token);
-							console.log('labas');
+							
 							console.log(data);
 							history('/');
 						})
