@@ -1,10 +1,8 @@
 import React from 'react';
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/Auth';
-import { Link } from 'react-router-dom';
+
 import { useNavigate } from 'react-router-dom';
-import { Form } from '../../component/navigation/form/StyleForm';
-import { Navigation, Button } from '../index';
 
 const Login = () => {
 	const [userImput, setUserInput] = useState();
@@ -13,21 +11,11 @@ const Login = () => {
 
 	return (
 		<div>
-			<Navigation>
-				<img src='https://purepng.com/public/uploads/thumbnail/google-stadia-logo-hd4.png' alt='logo' />
-				<Link className='link' to='/login'>
-					Login
-				</Link>
-				<Link className='link' to='/register'>
-					Register
-				</Link>
-			</Navigation>
-
 			<h1>Login</h1>
-			<Form
+			<form
 				onSubmit={(e) => {
 					e.preventDefault();
-					fetch(`${process.env.REACT_APP_API_URL}/v1/auth/login`, {
+					fetch(`http://localhost:8080/v1/auth/login`, {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -40,7 +28,8 @@ const Login = () => {
 								return alert('no data');
 							}
 							authContex.setToken(data.token);
-							console.log(data.token);
+							console.log('labas');
+							console.log(data);
 							history('/');
 						})
 						.catch((err) => alert(err.message))
@@ -65,10 +54,8 @@ const Login = () => {
 						onChange={(e) => setUserInput({ ...userImput, password: e.target.value })}
 					/>
 				</div>
-				<Button type='submit' style='simple'>
-					Submit
-				</Button>
-			</Form>
+				<button type='submit'>Submit</button>
+			</form>
 		</div>
 	);
 };

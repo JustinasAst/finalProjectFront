@@ -1,12 +1,12 @@
 import './App.css';
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
+/* import PrivateRoute from './components/PrivateRoute'; */
 
 const LazyHome = React.lazy(() => import('./pages/Home/Home'));
+const LazyCompany = React.lazy(() => import('./pages/Company/Company'));
 const LazyRegister = React.lazy(() => import('./pages/Register/Register'));
 const LazyLogin = React.lazy(() => import('./pages/Login/Login'));
-const LazyAdd = React.lazy(() => import('./pages/Add/Add'));
 
 function App() {
 	return (
@@ -14,10 +14,11 @@ function App() {
 			<Router>
 				<Suspense fallback={() => <h1>Loading...</h1>}>
 					<Routes>
+						<Route path='/company/:companyId' element={<LazyCompany />} />
 						<Route exact path='/register' element={<LazyRegister />} />
 						<Route exact path='/login' element={<LazyLogin />} />
-						<Route exact path='/' element={<PrivateRoute>{<LazyHome />}</PrivateRoute>} />
-						<Route exact path='/add' element={<PrivateRoute>{<LazyAdd />}</PrivateRoute>} />
+
+						<Route exact path='/' element={<LazyHome />} />
 					</Routes>
 				</Suspense>
 			</Router>
