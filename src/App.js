@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 /* import PrivateRoute from './components/PrivateRoute'; */
 
 const LazyHome = React.lazy(() => import('./pages/Home/Home'));
-const LazyCompany = React.lazy(() => import('./pages/Company/Company'));
+const LazyComments = React.lazy(() => import('./pages/Comments/Comments'));
 const LazyRegister = React.lazy(() => import('./pages/Register/Register'));
 const LazyLogin = React.lazy(() => import('./pages/Login/Login'));
 
@@ -14,7 +14,7 @@ function App() {
 			<Router>
 				<Suspense fallback={() => <h1>Loading...</h1>}>
 					<Routes>
-						<Route path='/company/:companyId' element={<LazyCompany />} />
+						<Route path='/company/:companyId' element={<LazyComments />} />
 						<Route exact path='/register' element={<LazyRegister />} />
 						<Route exact path='/login' element={<LazyLogin />} />
 

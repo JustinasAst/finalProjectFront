@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/Auth';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useResource } from '../../hooks/useResource';
 import { toast } from 'react-toastify';
-
-const Company = () => {
+import Header from '../../component/Header';
+import './Comments.css';
+import Button from '../../component/button/Button';
+const Comments = () => {
 	const authContext = useContext(AuthContext);
 	const { companyId } = useParams();
 	const { data: company } = useResource(`company/${companyId}`);
@@ -14,16 +17,16 @@ const Company = () => {
 
 	/* console.log(authContext); */
 	let form = null;
-	if (authContext.token) {
+	if (authContext.user) {
 		form = (
 			<form
-				className='form'
+				className='comment'
 				onSubmit={(e) => {
 					e.preventDefault();
 					fetch(`http://localhost:8080/v1/company/${companyId}/comments`, {
 						method: 'POST',
 						headers: {
-							authorization: `Bearer ${authContext.token || 'none'}`,
+							authorization: `Bearer ${authContext.user.token || 'none'}`,
 							'Content-Type': 'application/json',
 						},
 
@@ -43,44 +46,60 @@ const Company = () => {
 						.finally(() => e.target.reset());
 				}}
 			>
-				<div>
-					<label>Title</label>
-					<input
-						type='number'
-						placeholder='Title'
-						required
-						onChange={(e) => setComment({ ...comment, rating: e.target.value })}
-					/>
+				<div className='rating'>
+					<label>Rating</label>
+					<select onChange={(e) => setComment({ ...comment, rating: e.target.value })}>
+						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
+						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
+						<option value='3'> &#11088; &#11088; &#11088;</option>
+						<option value='2'> &#11088; &#11088;</option>
+						<option value='1'> &#11088; </option>
+					</select>
 				</div>
-				<div>
+
+				<div className='textarea'>
 					<label>Description</label>
 					<textarea
 						type='text'
-						placeholder='Description'
+						placeholder='Palikite komentarą čia'
 						required
 						onChange={(e) => setComment({ ...comment, comment: e.target.value })}
 					/>
 				</div>
-				<button type='submit'>Add</button>
+				<Button type='submit'>Palikti komentarą</Button>
 			</form>
 		);
 	}
 
 	return (
 		<div>
-			<h1>{company.name}</h1>
-			<div>
+			<Header>
+				<h1 className='headerName'>{company.name}</h1>
+				<div className='navigation'>
+					<Link className='link' to='/'>
+						Home
+					</Link>
+					<Link className='link' to='/register'>
+						Register
+					</Link>
+					<Link className='link' to='/login'>
+						Login
+					</Link>
+				</div>
+			</Header>
+			{form}
+
+			<div className='allComments'>
 				{(comments || []).map((comment) => (
-					<div key={comment.id}>
-						<h3>{comment.comment}</h3>
+					<div className='commentBox' key={comment.id}>
+						<h4>{comment.comment}</h4>
 						<p>{comment.rating}</p>
 						<p>{comment.name}</p>
 					</div>
 				))}
 			</div>
-			{form}
 		</div>
 	);
 };
 
-export default Company;
+export default Comments;

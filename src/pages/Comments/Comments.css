@@ -1,9 +1,43 @@
-.companyBox {
+.commentBox {
 	background: grey;
-	width: 50%;
+	width: 30%;
 	margin: 0 auto;
 	padding: 0.1rem;
 	margin-top: 1rem;
 	border-radius: 10px;
 	color: rgb(233, 225, 225);
+}
+.comment {
+	background: wheat;
+	padding: 1rem;
+	width: 50%;
+	margin: 1rem auto;
+	border: 3px solid #eb9131;
+	border-radius: 5px;
+}
+.comment label {
+	font-size: large;
+	color: rgb(66, 63, 63);
+}
+.comment select {
+	background: wheat;
+	border: none;
+	text-align: center;
+	width: 100%;
+	margin-top: 1rem;
+}
+
+.comment textarea {
+	background: rgb(255, 254, 253);
+	border: none;
+	width: 15;
+	width: 100%;
+	margin-top: 1rem;
+}
+.textarea {
+	margin: 1rem auto;
+}
+.allComments {
+	display: flex;
+	flex-wrap: wrap;
 }

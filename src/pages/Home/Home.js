@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, generatePath } from 'react-router-dom';
 import { useResource } from '../../hooks/useResource';
-/* import { Link } from 'react-router-dom'; */
+import Header from '../../component/Header';
+
 /* import { AuthContext } from '../../context/Auth'; */
 import './Home.css';
 
@@ -11,9 +12,20 @@ const Home = () => {
 
 	return (
 		<div>
+			<Header>
+				<h1 className='headerName'>Atsiliepimai.lt</h1>
+				<div className='navigation'>
+					<Link className='link' to='/register'>
+						Register
+					</Link>
+					<Link className='link' to='/login'>
+						Login
+					</Link>
+				</div>
+			</Header>
 			{company.map((item) => (
-				<div key={item.id}>
-					<Link to={generatePath('/company/:companyId', { companyId: item.id })}>
+				<div className='companyBox' key={item.id}>
+					<Link className='boxLink' to={generatePath('/company/:companyId', { companyId: item.id })}>
 						<h2>{item.name}</h2>
 					</Link>
 					<p>{item.description}</p>

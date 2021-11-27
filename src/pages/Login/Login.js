@@ -27,8 +27,8 @@ const Login = () => {
 							if (!data) {
 								return alert('no data');
 							}
-							authContex.setToken(data.token);
-							
+							authContex.setUser(data);
+
 							console.log(data);
 							history('/');
 						})
