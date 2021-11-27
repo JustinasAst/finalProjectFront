@@ -9,7 +9,7 @@ const Register = () => {
 	return (
 		<div>
 			<Header>
-				<div>
+				<div className='navigation'>
 					<Link className='link' to='/'>
 						Home
 					</Link>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/Auth';
-
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import Header from '../../component/Header';
+import Button from '../../component/button/Button';
+import './Login.css';
 
 const Login = () => {
 	const [userImput, setUserInput] = useState();
@@ -11,6 +13,16 @@ const Login = () => {
 
 	return (
 		<div>
+			<Header>
+				<div className='navigation'>
+					<Link className='link' to='/'>
+						Home
+					</Link>
+					<Link className='link' to='/register'>
+						Register
+					</Link>
+				</div>
+			</Header>
 			<h1>Login</h1>
 			<form
 				onSubmit={(e) => {
@@ -54,7 +66,7 @@ const Login = () => {
 						onChange={(e) => setUserInput({ ...userImput, password: e.target.value })}
 					/>
 				</div>
-				<button type='submit'>Submit</button>
+				<Button type='submit'>Submit</Button>
 			</form>
 		</div>
 	);
