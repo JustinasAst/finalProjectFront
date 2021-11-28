@@ -50,7 +50,7 @@ const Register = () => {
 				>
 					<div>
 						<label>Vardas</label>
-						<input type='email' placeholder='Vardas' required name='text' />
+						<input type='text' placeholder='Vardas' required name='name' />
 					</div>
 					<div>
 						<label>Email</label>

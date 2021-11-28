@@ -7,6 +7,7 @@ const LazyHome = React.lazy(() => import('./pages/Home/Home'));
 const LazyComments = React.lazy(() => import('./pages/Comments/Comments'));
 const LazyRegister = React.lazy(() => import('./pages/Register/Register'));
 const LazyLogin = React.lazy(() => import('./pages/Login/Login'));
+const LazyAddCars = React.lazy(() => import('./pages/AddCars/AddCars'));
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 						<Route path='/company/:companyId' element={<LazyComments />} />
 						<Route exact path='/register' element={<LazyRegister />} />
 						<Route exact path='/login' element={<LazyLogin />} />
+						<Route exact path='/addcars' element={<LazyAddCars />} />
 
 						<Route exact path='/' element={<LazyHome />} />
 					</Routes>

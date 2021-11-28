@@ -7,13 +7,31 @@ import { toast } from 'react-toastify';
 import Header from '../../component/Header';
 import './Comments.css';
 import Button from '../../component/button/Button';
+import { computeHeadingLevel } from '@testing-library/dom';
+
 const Comments = () => {
 	const authContext = useContext(AuthContext);
 	const { companyId } = useParams();
 	const { data: company } = useResource(`company/${companyId}`);
+	console.log(company);
 	const { data: comments, refresh } = useResource(`company/${companyId}/comments`);
 
 	const [comment, setComment] = useState();
+
+	const deleteItem = (id) => {
+		fetch(`http://localhost:8080/v1/company/${companyId}/comments/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${authContext.user.token || 'none'}`,
+			},
+			body: null,
+		})
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => alert('Automobilis istrintas'));
+	};
 
 	/* console.log(authContext); */
 	let form = null;
@@ -47,8 +65,38 @@ const Comments = () => {
 				}}
 			>
 				<div className='rating'>
-					<label>Rating</label>
+					<label>Emocija</label>
 					<select onChange={(e) => setComment({ ...comment, rating: e.target.value })}>
+						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
+						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
+						<option value='3'> &#11088; &#11088; &#11088;</option>
+						<option value='2'> &#11088; &#11088;</option>
+						<option value='1'> &#11088; </option>
+					</select>
+				</div>
+				<div className='rating'>
+					<label>Išlaikymas</label>
+					<select onChange={(e) => setComment({ ...comment, expenses: e.target.value })}>
+						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
+						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
+						<option value='3'> &#11088; &#11088; &#11088;</option>
+						<option value='2'> &#11088; &#11088;</option>
+						<option value='1'> &#11088; </option>
+					</select>
+				</div>
+				<div className='rating'>
+					<label>Ekonomija</label>
+					<select onChange={(e) => setComment({ ...comment, economy: e.target.value })}>
+						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
+						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
+						<option value='3'> &#11088; &#11088; &#11088;</option>
+						<option value='2'> &#11088; &#11088;</option>
+						<option value='1'> &#11088; </option>
+					</select>
+				</div>
+				<div className='rating'>
+					<label>Nuvertėjimas</label>
+					<select onChange={(e) => setComment({ ...comment, price_drop: e.target.value })}>
 						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='3'> &#11088; &#11088; &#11088;</option>
@@ -58,7 +106,7 @@ const Comments = () => {
 				</div>
 
 				<div className='textarea'>
-					<label>Description</label>
+					<label>Komentaras</label>
 					<textarea
 						type='text'
 						placeholder='Palikite komentarą čia'
@@ -74,7 +122,9 @@ const Comments = () => {
 	return (
 		<div>
 			<Header>
-				<h1 className='headerName'>{company.name}</h1>
+				<h1 className='headerName'>
+					{company.name} {company.model}
+				</h1>
 				<div className='navigation'>
 					<Link className='link' to='/'>
 						Home
@@ -92,9 +142,18 @@ const Comments = () => {
 			<div className='allComments'>
 				{(comments || []).map((comment) => (
 					<div className='commentBox' key={comment.id}>
-						<h4>{comment.comment}</h4>
-						<p>{comment.rating}</p>
 						<p>{comment.name}</p>
+						<p>{comment.comment}</p>
+						<p>Emocija: {comment.rating}</p>
+						<p>Išlaikymas: {comment.expenses}</p>
+						<p>Ekonomija: {comment.economy}</p>
+						<p>Nuvertėjimas: {comment.price_drop}</p>
+
+						{authContext.user && comment.users_id === authContext.user.id ? (
+							<button onClick={() => deleteItem(comment.id)}> delete</button>
+						) : (
+							''
+						)}
 					</div>
 				))}
 			</div>
