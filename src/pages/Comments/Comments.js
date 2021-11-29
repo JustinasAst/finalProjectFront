@@ -141,22 +141,38 @@ const Comments = () => {
 					</Link>
 				</div>
 			</Header>
+			<div className='description'>
+				<p>{company.description}</p>
+			</div>
+
 			{form}
 
 			<div className='allComments'>
 				{(comments || []).map((comment) => (
 					<div className='commentBox' key={comment.id}>
-						<p>Emocija: {comment.rating}</p>
-						<p>Išlaikymas: {comment.expenses}</p>
-						<p>Ekonomija: {comment.economy}</p>
-						<p>Nuvertėjimas: {comment.price_drop}</p>
-						<p>{comment.comment}</p>
+						<div className='deleteDiv'>
+							{authContext.user && comment.users_id === authContext.user.id ? (
+								<button onClick={() => deleteItem(comment.id)}>X</button>
+							) : (
+								''
+							)}
+						</div>
 
-						{authContext.user && comment.users_id === authContext.user.id ? (
-							<button onClick={() => deleteItem(comment.id)}> delete</button>
-						) : (
-							''
-						)}
+						<p>
+							Emocija: <strong>{comment.rating} / 5</strong>
+						</p>
+						<p>
+							Išlaikymas: <strong>{comment.expenses} / 5</strong>
+						</p>
+						<p>
+							Ekonomija: <strong> {comment.economy} / 5</strong>
+						</p>
+						<p>
+							Nuvertėjimas: <strong> {comment.price_drop} / 5</strong>
+						</p>
+						<div className='userComment'>
+							<p>{comment.comment}</p>
+						</div>
 					</div>
 				))}
 			</div>

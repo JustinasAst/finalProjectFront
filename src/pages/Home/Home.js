@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, generatePath } from 'react-router-dom';
 import { useResource } from '../../hooks/useResource';
+import ReactStars from 'react-rating-stars-component';
 import Header from '../../component/Header';
 import FilterField from '../../component/FilterField/FilterField';
 
@@ -19,7 +20,9 @@ const Home = () => {
 			.then((data) => {
 				console.log(data);
 				if (!data) {
-					return alert('error');
+					console.log('nieko nera');
+				} else {
+					console.log('labas');
 				}
 				setData(data);
 			});
@@ -44,6 +47,7 @@ const Home = () => {
 					</Link>
 				</div>
 			</Header>
+
 			<div className='bodyBox'>
 				<FilterField>
 					<div className='HomeButton'>
@@ -81,8 +85,9 @@ const Home = () => {
 							</div>
 
 							<p>{item.product_years}</p>
-							<p>{item.description}</p>
-							<p>{item.rating}</p>
+							<p>
+								Bendras vertinimas: <strong> {item.rating}/5 </strong>
+							</p>
 						</div>
 					))}
 				</div>

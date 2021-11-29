@@ -41,3 +41,30 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+
+.description {
+	border: 1px solid black;
+	width: 70%;
+	margin: 1rem auto;
+	border-radius: 5px;
+}
+.userComment {
+	background: rgb(226, 221, 221);
+	color: rgb(49, 49, 49);
+	padding-bottom: 1rem;
+	text-align: left;
+}
+.userComment p {
+	margin-left: 0.5rem;
+}
+.deleteDiv {
+	text-align: right;
+}
+.deleteDiv button {
+	margin-right: 0.5rem;
+	background: none;
+	border-radius: 50%;
+	color: rgb(233, 32, 10);
+	border: 1px solid red;
+	cursor: pointer;
+}

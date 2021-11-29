@@ -14,7 +14,7 @@
 }
 
 .companyBox {
-	background: grey;
+	background: rgb(189, 186, 186);
 	width: 40%;
 	margin: 0 auto;
 	padding: 0.1rem;
@@ -39,12 +39,18 @@
 	width: 100%;
 }
 .HomeButton button {
-	width: 45%;
+	width: 55%;
 	border-radius: 5px;
 	border: none;
 	margin: 0.3rem;
-	padding: 2px 20px;
+	padding: 5px 20px;
 	color: rgb(59, 58, 58);
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	margin: 0.7rem auto;
+	margin: 0.5rem auto;
+}
+h2 {
+	color: rgb(70, 68, 68);
+}
+p {
+	color: rgb(70, 68, 68);
 }
