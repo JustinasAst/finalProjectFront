@@ -13,10 +13,10 @@ const Comments = () => {
 	const authContext = useContext(AuthContext);
 	const { companyId } = useParams();
 	const { data: company } = useResource(`company/${companyId}`);
-	console.log(company);
 	const { data: comments, refresh } = useResource(`company/${companyId}/comments`);
-
 	const [comment, setComment] = useState();
+
+	console.log(authContext.user);
 
 	const deleteItem = (id) => {
 		fetch(`http://localhost:8080/v1/company/${companyId}/comments/${id}`, {
@@ -33,8 +33,8 @@ const Comments = () => {
 			.then((data) => alert('Automobilis istrintas'));
 	};
 
-	/* console.log(authContext); */
 	let form = null;
+
 	if (authContext.user) {
 		form = (
 			<form
@@ -67,6 +67,7 @@ const Comments = () => {
 				<div className='rating'>
 					<label>Emocija</label>
 					<select onChange={(e) => setComment({ ...comment, rating: e.target.value })}>
+						<option value='0'></option>
 						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='3'> &#11088; &#11088; &#11088;</option>
@@ -77,6 +78,7 @@ const Comments = () => {
 				<div className='rating'>
 					<label>Išlaikymas</label>
 					<select onChange={(e) => setComment({ ...comment, expenses: e.target.value })}>
+						<option value='0'> </option>
 						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='3'> &#11088; &#11088; &#11088;</option>
@@ -87,6 +89,7 @@ const Comments = () => {
 				<div className='rating'>
 					<label>Ekonomija</label>
 					<select onChange={(e) => setComment({ ...comment, economy: e.target.value })}>
+						<option value='0'> </option>
 						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='3'> &#11088; &#11088; &#11088;</option>
@@ -97,6 +100,7 @@ const Comments = () => {
 				<div className='rating'>
 					<label>Nuvertėjimas</label>
 					<select onChange={(e) => setComment({ ...comment, price_drop: e.target.value })}>
+						<option value='0'> </option>
 						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='3'> &#11088; &#11088; &#11088;</option>
@@ -142,12 +146,11 @@ const Comments = () => {
 			<div className='allComments'>
 				{(comments || []).map((comment) => (
 					<div className='commentBox' key={comment.id}>
-						<p>{comment.name}</p>
-						<p>{comment.comment}</p>
 						<p>Emocija: {comment.rating}</p>
 						<p>Išlaikymas: {comment.expenses}</p>
 						<p>Ekonomija: {comment.economy}</p>
 						<p>Nuvertėjimas: {comment.price_drop}</p>
+						<p>{comment.comment}</p>
 
 						{authContext.user && comment.users_id === authContext.user.id ? (
 							<button onClick={() => deleteItem(comment.id)}> delete</button>

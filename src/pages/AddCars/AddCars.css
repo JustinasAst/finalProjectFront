@@ -1,10 +1,11 @@
 form {
-	width: 40%;
+	width: 80%;
 	border: none;
 	border-radius: 10px;
 	background: #c3ccdb;
 	padding: 1rem;
 	margin: 0 auto;
+	margin-top: 1rem;
 }
 
 input {
@@ -14,7 +15,7 @@ input {
 	border: none;
 	margin: rem auto;
 }
-/*
+
 .uploadLabel {
 	border: 1px solid #ccc;
 	display: inline-block;
@@ -22,10 +23,11 @@ input {
 	cursor: pointer;
 	border-radius: 5px;
 	background: rgb(143, 160, 158);
+	margin-top: 1rem;
 }
 .uploadButton {
 	display: none;
-} */
+}
 button {
 	display: flex;
 	margin: 1rem auto;

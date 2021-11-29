@@ -1,4 +1,6 @@
 .filterField {
 	background: rgb(174, 168, 168);
 	width: 20%;
+	text-align: center;
+	padding-top: 1rem;
 }

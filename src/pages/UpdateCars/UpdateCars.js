@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useResource } from '../../hooks/useResource';
 
 import './UpdateCarasTable.css';
 
 const UpdateCars = () => {
-	const { data: company } = useResource('company');
+	const [newData, setData] = useState([]);
+	const [name, setName] = useState('audi');
+
+	//const { data: company } = useResource('company/filter/bmw');
+
+	useEffect(() => {
+		fetch(`http://localhost:8080/v1/company/filter/${name}`)
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				if (!data) {
+					return alert('error');
+				}
+				setData(data);
+			});
+	}, [name]);
 
 	const deleteItem = (id) => {
 		fetch(`http://localhost:8080/v1/company/${id}`, {
@@ -17,10 +32,31 @@ const UpdateCars = () => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => alert('Automobilis istrintas'));
+			.then((data) => alert('Automobilis'));
 	};
 	return (
-		<div>
+		<div className='addCars'>
+			<div className='button'>
+				<button onClick={() => setName('bmw')}> BMW </button>
+				<button onClick={() => setName('audi')}> AUDI</button>
+				<button className='vw' onClick={() => setName('volkswagen')}>
+					Volkswagen
+				</button>
+				<button onClick={() => setName('skoda')}> Skoda</button>
+				<button onClick={() => setName('citroen')}>Citroen</button>
+				<button onClick={() => setName('dodge')}>Dodge </button>
+				<button onClick={() => setName('honda')}>Honda</button>
+				<button onClick={() => setName('hyundai')}>Hyundai</button>
+				<button onClick={() => setName('jeep')}>Jeep</button>
+				<button onClick={() => setName('lexus')}>Lexus</button>
+				<button onClick={() => setName('mazda')}>Mazda</button>
+				<button className='mb' onClick={() => setName('mercedes Benz')}>
+					Mercedes Benz
+				</button>
+				<button onClick={() => setName('nissan')}>Nissan</button>
+				<button onClick={() => setName('opel')}>Opel</button>
+				<button onClick={() => setName('toyota')}>Toyota</button>
+			</div>
 			<div className='table'>
 				<table>
 					<thead>
@@ -33,7 +69,7 @@ const UpdateCars = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{company.map((item) => (
+						{newData.map((item) => (
 							<tr key={item.id}>
 								<td>{item.name}</td>
 								<td>{item.model}</td>

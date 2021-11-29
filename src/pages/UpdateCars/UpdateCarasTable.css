@@ -24,3 +24,36 @@ table thead {
 	color: white;
 	height: 3rem;
 }
+select {
+	width: 96%;
+	padding: 5px;
+	border-radius: 5px;
+	border: none;
+}
+
+.button {
+	width: 26%;
+	margin-top: 2rem;
+	margin-left: 0;
+}
+.vw {
+	padding: 5px 10px;
+	width: 100px;
+}
+.button button {
+	display: flex;
+	text-align: center;
+	padding: 5px 15px;
+	width: 100px;
+	border: none;
+	border-radius: 5px;
+	background: rgb(211, 204, 204);
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 13px;
+	color: rgb(44, 41, 41);
+}
+.addCars {
+	display: flex;
+	width: 83%;
+	margin: 0 auto;
+}
