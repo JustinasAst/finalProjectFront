@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
-import { Link, generatePath } from 'react-router-dom';
+import { getUser } from '../../context/user';
+import { Link, generatePath, useNavigate } from 'react-router-dom';
 import { useResource } from '../../hooks/useResource';
-import ReactStars from 'react-rating-stars-component';
+import NewStar from '../../component/star';
 import Header from '../../component/Header';
 import FilterField from '../../component/FilterField/FilterField';
 
@@ -13,9 +14,15 @@ const Home = () => {
 	const [data, setData] = useState([]);
 
 	//useResource(`company/filter/${name} `);
+	let navigate = useNavigate();
+
+	const logout = () => {
+		window.localStorage.clear();
+		navigate('/login');
+	};
 
 	useEffect(() => {
-		fetch(`http://localhost:8080/v1/company/filter/${name}`)
+		fetch(`${process.env.REACT_APP_API_URL}/v1/company/filter/${name}`)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
@@ -28,6 +35,25 @@ const Home = () => {
 			});
 	}, [name]);
 
+	/* const Star = (value) => {
+		switch (value) {
+			case 0:
+				return <p>-</p>;
+			case 1:
+				return <p>&#11088;</p>;
+			case 2:
+				return <p>&#11088; &#11088;</p>;
+			case 3:
+				return <p>&#11088; &#11088;&#11088;</p>;
+			case 4:
+				return <p>&#11088; &#11088; &#11088; &#11088;</p>;
+			case 5:
+				return <p>&#11088; &#11088; &#11088; &#11088; &#11088;</p>;
+			default:
+				<p>No rating</p>;
+		}
+	};
+ */
 	//const { data: company } = useResource(`company/filter/${name} `);
 
 	return (
@@ -45,6 +71,7 @@ const Home = () => {
 					<Link className='link' to='/login'>
 						Login
 					</Link>
+					{getUser() ? <button onClick={logout}>Logout</button> : ''}
 				</div>
 			</Header>
 
@@ -81,13 +108,14 @@ const Home = () => {
 								</h2>
 							</Link>
 							<div>
-								<img src={'http://localhost:8080/v1/company/uploads/' + item.foto} alt='logo' />
+								<img src={`${process.env.REACT_APP_API_URL}/v1/company/uploads/` + item.foto} alt='logo' />
 							</div>
 
-							<p>{item.product_years}</p>
+							<p>{item.production_years}</p>
 							<p>
-								Bendras vertinimas: <strong> {item.rating}/5 </strong>
+								<strong> Bendras vertinimas:</strong>
 							</p>
+							<NewStar value={item.rating} />
 						</div>
 					))}
 				</div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import './Register.css';
@@ -6,6 +6,7 @@ import Header from '../../component/Header';
 import Button from '../../component/button/Button';
 
 const Register = () => {
+	const [userInputs, setUserInputs] = useState();
 	return (
 		<div>
 			<Header>
@@ -24,19 +25,16 @@ const Register = () => {
 				<form
 					onSubmit={(e) => {
 						e.preventDefault();
-						fetch(`http://localhost:8080/v1/auth/register`, {
+						fetch(`${process.env.REACT_APP_API_URL}/v1/auth/register`, {
 							method: 'POST',
 							headers: {
 								'Content-Type': 'application/json',
 							},
-							body: JSON.stringify({
-								name: e.target.elements.name.value,
-								email: e.target.elements.email.value,
-								password: e.target.elements.password.value,
-							}),
+							body: JSON.stringify(userInputs),
 						})
 							.then((res) => res.json())
 							.then((data) => {
+								setUserInputs('');
 								if (data) {
 									toast.success('Succsess');
 								}
@@ -44,21 +42,54 @@ const Register = () => {
 									toast.error('Succsess');
 								}
 							})
-							.catch((err) => alert(err.message))
-							.finally(() => e.target.reset());
+							.catch((err) => alert(err.message));
+						/* 							.finally(() => e.target.reset()); */
 					}}
 				>
 					<div>
 						<label>Vardas</label>
-						<input type='text' placeholder='Vardas' required name='name' />
+						<input
+							type='text'
+							placeholder='Vardas'
+							required
+							name='name'
+							onChange={(e) =>
+								setUserInputs({
+									...userInputs,
+									name: e.target.value,
+								})
+							}
+						/>
 					</div>
 					<div>
 						<label>Email</label>
-						<input type='email' placeholder='@gmail.com' required name='email' />
+						<input
+							type='email'
+							placeholder='@gmail.com'
+							required
+							name='email'
+							onChange={(e) => {
+								setUserInputs({
+									...userInputs,
+									email: e.target.value.trim().toLocaleLowerCase(),
+								});
+							}}
+						/>
 					</div>
 					<div>
 						<label>Slaptažodis</label>
-						<input type='password' placeholder='Password' required name='password' />
+						<input
+							type='password'
+							placeholder='Password'
+							required
+							name='password'
+							onChange={(e) =>
+								setUserInputs({
+									...userInputs,
+									password: e.target.value,
+								})
+							}
+						/>
 					</div>
 					<Button type='submit'>Submit</Button>
 				</form>

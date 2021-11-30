@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useResource } from '../../hooks/useResource';
 
 import './UpdateCarasTable.css';
 
 const UpdateCars = () => {
+	let navigate = useNavigate();
+
 	const [newData, setData] = useState([]);
 	const [name, setName] = useState('audi');
 
 	//const { data: company } = useResource('company/filter/bmw');
 
 	useEffect(() => {
-		fetch(`http://localhost:8080/v1/company/filter/${name}`)
+		fetch(`${process.env.REACT_APP_API_URL}/v1/company/filter/${name}`)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
@@ -22,7 +25,7 @@ const UpdateCars = () => {
 	}, [name]);
 
 	const deleteItem = (id) => {
-		fetch(`http://localhost:8080/v1/company/${id}`, {
+		fetch(`${process.env.REACT_APP_API_URL}/v1/company/${id}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -32,7 +35,7 @@ const UpdateCars = () => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => alert('Automobilis'));
+			.then((data) => navigate('/addcars'), alert('Automobilis ištrintas'));
 	};
 	return (
 		<div className='addCars'>

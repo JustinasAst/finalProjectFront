@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { getUser } from '../../context/user';
 import { AuthContext } from '../../context/Auth';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -7,23 +8,21 @@ import { toast } from 'react-toastify';
 import Header from '../../component/Header';
 import './Comments.css';
 import Button from '../../component/button/Button';
-import { computeHeadingLevel } from '@testing-library/dom';
+import NewStar from '../../component/star';
 
 const Comments = () => {
-	const authContext = useContext(AuthContext);
+	/* const authContext = useContext(AuthContext); */
 	const { companyId } = useParams();
 	const { data: company } = useResource(`company/${companyId}`);
 	const { data: comments, refresh } = useResource(`company/${companyId}/comments`);
 	const [comment, setComment] = useState();
 
-	console.log(authContext.user);
-
 	const deleteItem = (id) => {
-		fetch(`http://localhost:8080/v1/company/${companyId}/comments/${id}`, {
+		fetch(`${process.env.REACT_APP_API_URL}/v1/company/${companyId}/comments/${id}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
-				authorization: `Bearer ${authContext.user.token || 'none'}`,
+				authorization: `Bearer ${getUser().token || 'none'}`,
 			},
 			body: null,
 		})
@@ -35,16 +34,16 @@ const Comments = () => {
 
 	let form = null;
 
-	if (authContext.user) {
+	if (getUser()) {
 		form = (
 			<form
 				className='comment'
 				onSubmit={(e) => {
 					e.preventDefault();
-					fetch(`http://localhost:8080/v1/company/${companyId}/comments`, {
+					fetch(`${process.env.REACT_APP_API_URL}/v1/company/${companyId}/comments`, {
 						method: 'POST',
 						headers: {
-							authorization: `Bearer ${authContext.user.token || 'none'}`,
+							authorization: `Bearer ${getUser().token || 'none'}`,
 							'Content-Type': 'application/json',
 						},
 
@@ -151,25 +150,24 @@ const Comments = () => {
 				{(comments || []).map((comment) => (
 					<div className='commentBox' key={comment.id}>
 						<div className='deleteDiv'>
-							{authContext.user && comment.users_id === authContext.user.id ? (
+							{getUser() && comment.users_id === getUser().id ? (
 								<button onClick={() => deleteItem(comment.id)}>X</button>
 							) : (
 								''
 							)}
 						</div>
+						<p>Emocija:</p>
+						<NewStar value={comment.rating} />
 
-						<p>
-							Emocija: <strong>{comment.rating} / 5</strong>
-						</p>
-						<p>
-							Išlaikymas: <strong>{comment.expenses} / 5</strong>
-						</p>
-						<p>
-							Ekonomija: <strong> {comment.economy} / 5</strong>
-						</p>
-						<p>
-							Nuvertėjimas: <strong> {comment.price_drop} / 5</strong>
-						</p>
+						<p>Išlaikymas: </p>
+						<NewStar value={comment.expenses} />
+
+						<p>Ekonomija: </p>
+						<NewStar value={comment.economy} />
+
+						<p>Nuvertėjimas:</p>
+						<NewStar value={comment.price_drop} />
+
 						<div className='userComment'>
 							<p>{comment.comment}</p>
 						</div>

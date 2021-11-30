@@ -1,15 +1,15 @@
-import React from 'react';
-import { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { AuthContext } from '../../context/Auth';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../../component/Header';
 import Button from '../../component/button/Button';
+import { setUser } from '../../context/user';
 import './Login.css';
 
 const Login = () => {
 	const [userImput, setUserInput] = useState();
-	const authContex = useContext(AuthContext);
-	let history = useNavigate();
+	/* 	const authContext = useContext(AuthContext); */
+	let navigate = useNavigate();
 
 	return (
 		<div>
@@ -18,16 +18,18 @@ const Login = () => {
 					<Link className='link' to='/'>
 						Home
 					</Link>
+
 					<Link className='link' to='/register'>
 						Register
 					</Link>
 				</div>
 			</Header>
+
 			<h1>Login</h1>
 			<form
 				onSubmit={(e) => {
 					e.preventDefault();
-					fetch(`http://localhost:8080/v1/auth/login`, {
+					fetch(`${process.env.REACT_APP_API_URL}/v1/auth/login`, {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -36,16 +38,18 @@ const Login = () => {
 					})
 						.then((res) => res.json())
 						.then((data) => {
-							if (!data) {
-								return alert('no data');
+							if (data.err) {
+								navigate('/login');
+								alert('Blogas Email arba slaptažodis');
+								return;
+							} else {
 							}
-							authContex.setUser(data);
-
+							console.log(data.token);
+							setUser(data);
 							console.log(data);
-							history('/');
 						})
 						.catch((err) => alert(err.message))
-						.finally(() => e.target.reset());
+						.finally(() => e.target.reset(), navigate('/'));
 				}}
 			>
 				<div>
@@ -55,6 +59,7 @@ const Login = () => {
 						placeholder='@gmail.com'
 						required
 						onChange={(e) => setUserInput({ ...userImput, email: e.target.value.trim().toLowerCase() })}
+						finally={(e) => e.target.reset()}
 					/>
 				</div>
 				<div>

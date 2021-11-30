@@ -1,9 +1,10 @@
 .commentBox {
-	background: grey;
-	width: 30%;
+	background: white;
+	width: 55%;
 	margin: 0 auto;
 	padding: 0.1rem;
 	margin-top: 1rem;
+	margin-bottom: 1rem;
 	border-radius: 10px;
 	color: rgb(233, 225, 225);
 }
@@ -65,6 +66,7 @@
 	background: none;
 	border-radius: 50%;
 	color: rgb(233, 32, 10);
-	border: 1px solid red;
+	border: 2px solid white;
+	background: white;
 	cursor: pointer;
 }

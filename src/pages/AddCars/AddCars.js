@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import Header from '../../component/Header';
 import { Link } from 'react-router-dom';
 import UpdateCars from '../UpdateCars/UpdateCars';
+import { useNavigate } from 'react-router-dom';
 import './AddCars.css';
 
 const AddCars = () => {
@@ -11,6 +12,8 @@ const AddCars = () => {
 	const [description, setDescription] = useState();
 	const [production_years, setProduction_years] = useState();
 	const [foto, setFoto] = useState();
+
+	let navigate = useNavigate();
 
 	const submitInput = (e) => {
 		e.preventDefault();
@@ -22,7 +25,7 @@ const AddCars = () => {
 		formData.append('production_years', production_years);
 		formData.append('foto', foto);
 
-		fetch('http://localhost:8080/v1/company', {
+		fetch(`${process.env.REACT_APP_API_URL}/v1/company`, {
 			method: 'POST',
 			body: formData,
 		})
@@ -30,6 +33,7 @@ const AddCars = () => {
 			.then((data) => {
 				console.log('Success:', data);
 				toast.success('Car is added');
+				navigate('/addcars');
 				setName('');
 				setModel('');
 				setDescription('');

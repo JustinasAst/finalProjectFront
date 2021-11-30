@@ -4,7 +4,7 @@ export function useResource(path) {
 	const [data, setData] = useState([]);
 
 	const refresh = useCallback(() => {
-		fetch(`http://localhost:8080/v1/${path}`)
+		fetch(`${process.env.REACT_APP_API_URL}/v1/${path}`)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
