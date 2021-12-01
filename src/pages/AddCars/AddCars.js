@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import Header from '../../component/Header';
 import { Link } from 'react-router-dom';
-import UpdateCars from '../UpdateCars/UpdateCars';
 import { useNavigate } from 'react-router-dom';
+import { Header, UpdateCars } from '../index';
 import './AddCars.css';
 
 const AddCars = () => {
@@ -31,9 +30,11 @@ const AddCars = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
+				if (data) {
+					navigate('/addcars');
+				}
 				console.log('Success:', data);
 				toast.success('Car is added');
-				navigate('/addcars');
 				setName('');
 				setModel('');
 				setDescription('');

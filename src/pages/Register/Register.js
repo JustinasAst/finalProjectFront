@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { Header, Button } from '../index';
 import './Register.css';
-import Header from '../../component/Header';
-import Button from '../../component/button/Button';
 
 const Register = () => {
 	const [userInputs, setUserInputs] = useState();

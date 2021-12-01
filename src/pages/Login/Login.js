@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { AuthContext } from '../../context/Auth';
 import { useNavigate, Link } from 'react-router-dom';
-import Header from '../../component/Header';
-import Button from '../../component/button/Button';
+import { Header, Button } from '../index';
 import { setUser } from '../../context/user';
 import './Login.css';
 
 const Login = () => {
 	const [userImput, setUserInput] = useState();
-	/* 	const authContext = useContext(AuthContext); */
 	let navigate = useNavigate();
 
 	return (

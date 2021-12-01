@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useResource } from '../../hooks/useResource';
-
 import './UpdateCarasTable.css';
 
 const UpdateCars = () => {
@@ -10,8 +8,6 @@ const UpdateCars = () => {
 	const [newData, setData] = useState([]);
 	const [name, setName] = useState('audi');
 	const [newProduction, setNewProduction] = useState('');
-
-	//const { data: company } = useResource('company/filter/bmw');
 
 	useEffect(() => {
 		fetch(`${process.env.REACT_APP_API_URL}/v1/company/filter/${name}`)

@@ -2,18 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { getUser } from '../../context/user';
 import { Link, generatePath, useNavigate } from 'react-router-dom';
-import { useResource } from '../../hooks/useResource';
-import NewStar from '../../component/star';
-import Header from '../../component/Header';
-import FilterField from '../../component/FilterField/FilterField';
-
+import { NewStar, Header, FilterField } from '../index';
 import './Home.css';
 
 const Home = () => {
 	const [name, setName] = useState('audi');
 	const [data, setData] = useState([]);
 
-	//useResource(`company/filter/${name} `);
 	let navigate = useNavigate();
 
 	const logout = () => {
@@ -95,7 +90,7 @@ const Home = () => {
 							<p>
 								<strong> Bendras vertinimas:</strong>
 							</p>
-							<NewStar value={item.rating} />
+							<NewStar value={Math.floor(item.rating)} />
 						</div>
 					))}
 				</div>

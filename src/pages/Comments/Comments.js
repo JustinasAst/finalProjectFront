@@ -1,17 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { getUser } from '../../context/user';
-import { AuthContext } from '../../context/Auth';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useResource } from '../../hooks/useResource';
 import { toast } from 'react-toastify';
-import Header from '../../component/Header';
+import { NewStar, Button, Header } from '../index';
+import Select from '../../component/Select/Select';
 import './Comments.css';
-import Button from '../../component/button/Button';
-import NewStar from '../../component/star';
 
 const Comments = () => {
-	/* const authContext = useContext(AuthContext); */
 	const { companyId } = useParams();
 	const { data: company } = useResource(`company/${companyId}`);
 	const { data: comments, refresh } = useResource(`company/${companyId}/comments`);
@@ -98,14 +95,16 @@ const Comments = () => {
 				</div>
 				<div className='rating'>
 					<label>Nuvertėjimas</label>
-					<select onChange={(e) => setComment({ ...comment, price_drop: e.target.value })}>
+					{/* <select onChange={(e) => setComment({ ...comment, price_drop: e.target.value })}>
 						<option value='0'> </option>
 						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
 						<option value='3'> &#11088; &#11088; &#11088;</option>
 						<option value='2'> &#11088; &#11088;</option>
 						<option value='1'> &#11088; </option>
-					</select>
+					</select> */}
+
+					<Select handleChange={(e) => setComment({ ...comment, price_drop: e.target.value })} />
 				</div>
 
 				<div className='textarea'>

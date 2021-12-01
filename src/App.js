@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './privateRoute/PrivateRoute';
 
 const LazyHome = React.lazy(() => import('./pages/Home/Home'));
 const LazyComments = React.lazy(() => import('./pages/Comments/Comments'));
