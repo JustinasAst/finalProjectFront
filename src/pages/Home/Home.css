@@ -47,6 +47,7 @@
 	color: rgb(59, 58, 58);
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	margin: 0.5rem auto;
+	cursor: pointer;
 }
 h2 {
 	color: rgb(70, 68, 68);

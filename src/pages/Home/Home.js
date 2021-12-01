@@ -35,27 +35,6 @@ const Home = () => {
 			});
 	}, [name]);
 
-	/* const Star = (value) => {
-		switch (value) {
-			case 0:
-				return <p>-</p>;
-			case 1:
-				return <p>&#11088;</p>;
-			case 2:
-				return <p>&#11088; &#11088;</p>;
-			case 3:
-				return <p>&#11088; &#11088;&#11088;</p>;
-			case 4:
-				return <p>&#11088; &#11088; &#11088; &#11088;</p>;
-			case 5:
-				return <p>&#11088; &#11088; &#11088; &#11088; &#11088;</p>;
-			default:
-				<p>No rating</p>;
-		}
-	};
- */
-	//const { data: company } = useResource(`company/filter/${name} `);
-
 	return (
 		<div>
 			<Header>
@@ -97,6 +76,7 @@ const Home = () => {
 						<button onClick={() => setName('nissan')}>Nissan</button>
 						<button onClick={() => setName('opel')}>Opel</button>
 						<button onClick={() => setName('toyota')}>Toyota</button>
+						<button onClick={() => setName('volvo')}>Volvo</button>
 					</div>
 				</FilterField>
 				<div className='carsBox'>

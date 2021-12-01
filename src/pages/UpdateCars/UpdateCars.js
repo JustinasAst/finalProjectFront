@@ -9,6 +9,7 @@ const UpdateCars = () => {
 
 	const [newData, setData] = useState([]);
 	const [name, setName] = useState('audi');
+	const [newProduction, setNewProduction] = useState('');
 
 	//const { data: company } = useResource('company/filter/bmw');
 
@@ -37,6 +38,23 @@ const UpdateCars = () => {
 			})
 			.then((data) => navigate('/addcars'), alert('Automobilis ištrintas'));
 	};
+	const handleClick = (id) => {
+		fetch(`${process.env.REACT_APP_API_URL}/v1/company/${id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				production_years: newProduction,
+				id,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				alert('Data pakeista');
+				setNewProduction('');
+			});
+	};
 	return (
 		<div className='addCars'>
 			<div className='button'>
@@ -59,6 +77,7 @@ const UpdateCars = () => {
 				<button onClick={() => setName('nissan')}>Nissan</button>
 				<button onClick={() => setName('opel')}>Opel</button>
 				<button onClick={() => setName('toyota')}>Toyota</button>
+				<button onClick={() => setName('volvo')}>Volvo</button>
 			</div>
 			<div className='table'>
 				<table>
@@ -68,6 +87,7 @@ const UpdateCars = () => {
 							<th>Modelis</th>
 							<th>Gamybos metai</th>
 							<th>Ratingas</th>
+							<th>Update</th>
 							<th>Delete</th>
 						</tr>
 					</thead>
@@ -78,6 +98,20 @@ const UpdateCars = () => {
 								<td>{item.model}</td>
 								<td>{item.production_years}</td>
 								<td>{item.rating}</td>
+								<td>
+									<div className='change'>
+										<input
+											className='production_years'
+											value={newProduction}
+											type='text'
+											name='production_years'
+											id='production_years'
+											placeholder='Gamybos metai'
+											onChange={(e) => setNewProduction(e.target.value)}
+										/>
+										<button onClick={() => handleClick(item.id)}>Change</button>
+									</div>
+								</td>
 								<td>
 									<button onClick={() => deleteItem(item.id)}>Delete</button>
 								</td>
