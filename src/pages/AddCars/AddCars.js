@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { Header, UpdateCars } from '../index';
+import { Header, UpdateCars, Button } from '../index';
 import './AddCars.css';
 
 const AddCars = () => {
@@ -50,7 +50,7 @@ const AddCars = () => {
 	return (
 		<div>
 			<Header>
-				<h1 className='headerName'>Atsiliepimai.lt</h1>
+				<h1>Atsiliepimai.lt</h1>
 				<div className='navigation'>
 					<Link className='link' to='/'>
 						Home
@@ -65,7 +65,7 @@ const AddCars = () => {
 				</div>
 			</Header>
 			<form onSubmit={submitInput}>
-				<div>
+				<div className='inputbox'>
 					<label>Brandas:</label>
 					<select value={name} onChange={(e) => setName(e.target.value)}>
 						<option value='0'> </option>
@@ -88,7 +88,14 @@ const AddCars = () => {
 				</div>
 				<div className='inputbox'>
 					<label>Modelis:</label>
-					<input type='text' name='model' value={model} id='model' onChange={(e) => setModel(e.target.value)} />
+					<input
+						type='text'
+						name='model'
+						value={model}
+						placeholder='Modelis'
+						id='model'
+						onChange={(e) => setModel(e.target.value)}
+					/>
 				</div>
 
 				<div className='inputbox'>
@@ -98,26 +105,36 @@ const AddCars = () => {
 						name='production_yers'
 						value={production_years}
 						id='production_yers'
+						placeholder='2008-2012'
 						onChange={(e) => setProduction_years(e.target.value)}
 					/>
 				</div>
 				<div className='inputbox'>
-					<label>Komentaras:</label>
-					<input
+					<label>Apie automobilį:</label>
+					<textarea
 						type='text'
 						name='description'
 						value={description}
 						id='description'
+						placeholder='Trumpa informacija apie automobilį'
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</div>
 
-				<label class='uploadLabel'>
-					<input type='file' name='foto' id='foto' onChange={(e) => setFoto(e.target.files[0])} class='uploadButton' />
+				<label className='uploadLabel'>
+					<input
+						type='file'
+						name='foto'
+						id='foto'
+						onChange={(e) => setFoto(e.target.files[0])}
+						className='uploadButton'
+					/>
 					Įkelti nuotrauka
 				</label>
 
-				<button type='submit'>Submit</button>
+				<Button type='submit' style='brand-outline'>
+					Submit
+				</Button>
 			</form>
 			<UpdateCars />
 		</div>

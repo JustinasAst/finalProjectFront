@@ -6,9 +6,11 @@ import './Register.css';
 
 const Register = () => {
 	const [userInputs, setUserInputs] = useState();
+
 	return (
 		<div>
 			<Header>
+				<h1>Automobilių atsiliepimai</h1>
 				<div className='navigation'>
 					<Link className='link' to='/'>
 						Home
@@ -34,15 +36,13 @@ const Register = () => {
 							.then((res) => res.json())
 							.then((data) => {
 								setUserInputs('');
-								if (data) {
-									toast.success('Succsess');
+								if (data.affectedRows !== 1) {
+									console.log(data);
+									return toast.error('Something went wrong, please try again');
 								}
-								if (!data) {
-									toast.error('Succsess');
-								}
+								toast.success('Succsess registered!');
 							})
-							.catch((err) => alert(err.message));
-						/* 							.finally(() => e.target.reset()); */
+							.catch((err) => toast.error('Šitas adresas yra užimtas'));
 					}}
 				>
 					<div>

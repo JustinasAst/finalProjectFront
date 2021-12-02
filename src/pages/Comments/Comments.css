@@ -19,13 +19,17 @@
 .comment label {
 	font-size: large;
 	color: rgb(66, 63, 63);
+	display: flex;
+
+	margin-top: 1rem;
+	margin-bottom: 0.1rem;
 }
 .comment select {
-	background: wheat;
+	border-bottom: 2px solid black;
 	border: none;
 	text-align: center;
 	width: 100%;
-	margin-top: 1rem;
+	margin-top: 0.5rem;
 }
 
 .comment textarea {

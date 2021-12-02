@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useResource } from '../../hooks/useResource';
 import { toast } from 'react-toastify';
 import { NewStar, Button, Header } from '../index';
+import { AiFillDelete } from 'react-icons/ai';
 import Select from '../../component/Select/Select';
 import './Comments.css';
 
@@ -62,47 +63,21 @@ const Comments = () => {
 			>
 				<div className='rating'>
 					<label>Emocija</label>
-					<select onChange={(e) => setComment({ ...comment, rating: e.target.value })}>
-						<option value='0'></option>
-						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
-						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
-						<option value='3'> &#11088; &#11088; &#11088;</option>
-						<option value='2'> &#11088; &#11088;</option>
-						<option value='1'> &#11088; </option>
-					</select>
+
+					<Select handleChange={(e) => setComment({ ...comment, rating: e.target.value })} />
 				</div>
 				<div className='rating'>
 					<label>Išlaikymas</label>
-					<select onChange={(e) => setComment({ ...comment, expenses: e.target.value })}>
-						<option value='0'> </option>
-						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
-						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
-						<option value='3'> &#11088; &#11088; &#11088;</option>
-						<option value='2'> &#11088; &#11088;</option>
-						<option value='1'> &#11088; </option>
-					</select>
+
+					<Select handleChange={(e) => setComment({ ...comment, expenses: e.target.value })} />
 				</div>
 				<div className='rating'>
 					<label>Ekonomija</label>
-					<select onChange={(e) => setComment({ ...comment, economy: e.target.value })}>
-						<option value='0'> </option>
-						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
-						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
-						<option value='3'> &#11088; &#11088; &#11088;</option>
-						<option value='2'> &#11088; &#11088;</option>
-						<option value='1'> &#11088; </option>
-					</select>
+
+					<Select handleChange={(e) => setComment({ ...comment, economy: e.target.value })} />
 				</div>
 				<div className='rating'>
 					<label>Nuvertėjimas</label>
-					{/* <select onChange={(e) => setComment({ ...comment, price_drop: e.target.value })}>
-						<option value='0'> </option>
-						<option value='5'> &#11088; &#11088; &#11088; &#11088; &#11088;</option>
-						<option value='4'> &#11088; &#11088; &#11088; &#11088;</option>
-						<option value='3'> &#11088; &#11088; &#11088;</option>
-						<option value='2'> &#11088; &#11088;</option>
-						<option value='1'> &#11088; </option>
-					</select> */}
 
 					<Select handleChange={(e) => setComment({ ...comment, price_drop: e.target.value })} />
 				</div>
@@ -150,7 +125,9 @@ const Comments = () => {
 					<div className='commentBox' key={comment.id}>
 						<div className='deleteDiv'>
 							{getUser() && comment.users_id === getUser().id ? (
-								<button onClick={() => deleteItem(comment.id)}>X</button>
+								<button onClick={() => deleteItem(comment.id)}>
+									<AiFillDelete size='1.2rem' />
+								</button>
 							) : (
 								''
 							)}

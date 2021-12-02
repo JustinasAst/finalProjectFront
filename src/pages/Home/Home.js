@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { getUser } from '../../context/user';
 import { Link, generatePath, useNavigate } from 'react-router-dom';
-import { NewStar, Header, FilterField } from '../index';
+import { NewStar, Header, FilterField, Button } from '../index';
+import { SiBmw, SiAudi, SiVolkswagen, SiSkoda, SiCitroen, SiHonda, SiHyundai, SiJeep, SiMazda } from 'react-icons/si';
+import { SiMercedes, SiNissan, SiOpel, SiToyota, SiVolvo, SiPorsche } from 'react-icons/si';
 import './Home.css';
 
 const Home = () => {
@@ -33,45 +35,77 @@ const Home = () => {
 	return (
 		<div>
 			<Header>
-				<h1 className='headerName'>Atsiliepimai.lt</h1>
+				<h1>Automobilių atsiliepimai</h1>
 				<div className='navigation'>
 					<Link className='link' to='/addcars'>
 						Add Cars
 					</Link>
-
 					<Link className='link' to='/register'>
 						Register
 					</Link>
 					<Link className='link' to='/login'>
 						Login
 					</Link>
-					{getUser() ? <button onClick={logout}>Logout</button> : ''}
+					{getUser() ? (
+						<Button style='logout' handleClick={logout}>
+							<h3>LogOut</h3>
+						</Button>
+					) : (
+						''
+					)}
 				</div>
 			</Header>
 
 			<div className='bodyBox'>
 				<FilterField>
 					<div className='HomeButton'>
-						<button onClick={() => setName('bmw')}> BMW </button>
-						<button onClick={() => setName('audi')}> AUDI</button>
-						<button className='vw' onClick={() => setName('volkswagen')}>
-							Volkswagen
+						<button onClick={() => setName('audi')}>
+							<SiAudi size='2em' />
 						</button>
-						<button onClick={() => setName('skoda')}> Skoda</button>
-						<button onClick={() => setName('citroen')}>Citroen</button>
-						<button onClick={() => setName('dodge')}>Dodge </button>
-						<button onClick={() => setName('honda')}>Honda</button>
-						<button onClick={() => setName('hyundai')}>Hyundai</button>
-						<button onClick={() => setName('jeep')}>Jeep</button>
-						<button onClick={() => setName('lexus')}>Lexus</button>
-						<button onClick={() => setName('mazda')}>Mazda</button>
-						<button className='mb' onClick={() => setName('mercedes Benz')}>
-							Mercedes Benz
+						<button onClick={() => setName('bmw')}>
+							<SiBmw size='2em' />
 						</button>
-						<button onClick={() => setName('nissan')}>Nissan</button>
-						<button onClick={() => setName('opel')}>Opel</button>
-						<button onClick={() => setName('toyota')}>Toyota</button>
-						<button onClick={() => setName('volvo')}>Volvo</button>
+
+						<button onClick={() => setName('volkswagen')}>
+							<SiVolkswagen size='2em' />
+						</button>
+						<button onClick={() => setName('skoda')}>
+							<SiSkoda size='2em' />
+						</button>
+						<button onClick={() => setName('citroen')}>
+							<SiCitroen size='2em' />
+						</button>
+						<button onClick={() => setName('dodge')}>
+							<SiPorsche size='2em' />
+						</button>
+						<button onClick={() => setName('honda')}>
+							<SiHonda size='2em' />
+						</button>
+						<button onClick={() => setName('jeep')}>
+							<SiJeep size='2em' />
+						</button>
+						<button onClick={() => setName('hyundai')}>
+							<SiHyundai size='2em' />
+						</button>
+
+						<button onClick={() => setName('mazda')}>
+							<SiMazda size='2em' />
+						</button>
+						<button onClick={() => setName('mercedes Benz')}>
+							<SiMercedes size='2em' />
+						</button>
+						<button onClick={() => setName('nissan')}>
+							<SiNissan size='2em' />
+						</button>
+						<button onClick={() => setName('opel')}>
+							<SiOpel size='2em' />
+						</button>
+						<button onClick={() => setName('toyota')}>
+							<SiToyota size='2em' />
+						</button>
+						<button onClick={() => setName('volvo')}>
+							<SiVolvo size='2em' />
+						</button>
 					</div>
 				</FilterField>
 				<div className='carsBox'>

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SiBmw, SiAudi, SiVolkswagen, SiSkoda, SiCitroen, SiHonda, SiHyundai, SiJeep, SiMazda } from 'react-icons/si';
+import { SiMercedes, SiNissan, SiOpel, SiToyota, SiVolvo, SiPorsche } from 'react-icons/si';
+import { AiFillDelete } from 'react-icons/ai';
+import { Button } from '../index';
 import './UpdateCarasTable.css';
 
 const UpdateCars = () => {
@@ -54,26 +58,53 @@ const UpdateCars = () => {
 	return (
 		<div className='addCars'>
 			<div className='button'>
-				<button onClick={() => setName('bmw')}> BMW </button>
-				<button onClick={() => setName('audi')}> AUDI</button>
-				<button className='vw' onClick={() => setName('volkswagen')}>
-					Volkswagen
+				<button onClick={() => setName('audi')}>
+					<SiAudi size='2em' />
 				</button>
-				<button onClick={() => setName('skoda')}> Skoda</button>
-				<button onClick={() => setName('citroen')}>Citroen</button>
-				<button onClick={() => setName('dodge')}>Dodge </button>
-				<button onClick={() => setName('honda')}>Honda</button>
-				<button onClick={() => setName('hyundai')}>Hyundai</button>
-				<button onClick={() => setName('jeep')}>Jeep</button>
-				<button onClick={() => setName('lexus')}>Lexus</button>
-				<button onClick={() => setName('mazda')}>Mazda</button>
-				<button className='mb' onClick={() => setName('mercedes Benz')}>
-					Mercedes Benz
+				<button onClick={() => setName('bmw')}>
+					<SiBmw size='2em' />
 				</button>
-				<button onClick={() => setName('nissan')}>Nissan</button>
-				<button onClick={() => setName('opel')}>Opel</button>
-				<button onClick={() => setName('toyota')}>Toyota</button>
-				<button onClick={() => setName('volvo')}>Volvo</button>
+
+				<button onClick={() => setName('volkswagen')}>
+					<SiVolkswagen size='2em' />
+				</button>
+				<button onClick={() => setName('skoda')}>
+					<SiSkoda size='2em' />
+				</button>
+				<button onClick={() => setName('citroen')}>
+					<SiCitroen size='2em' />
+				</button>
+				<button onClick={() => setName('dodge')}>
+					<SiPorsche size='2em' />
+				</button>
+				<button onClick={() => setName('honda')}>
+					<SiHonda size='2em' />
+				</button>
+				<button onClick={() => setName('hyundai')}>
+					<SiHyundai size='2em' />
+				</button>
+
+				<button onClick={() => setName('mazda')}>
+					<SiMazda size='2em' />
+				</button>
+				<button onClick={() => setName('jeep')}>
+					<SiJeep size='2em' />
+				</button>
+				<button onClick={() => setName('mercedes Benz')}>
+					<SiMercedes size='2em' />
+				</button>
+				<button onClick={() => setName('nissan')}>
+					<SiNissan size='2em' />
+				</button>
+				<button onClick={() => setName('opel')}>
+					<SiOpel size='2em' />
+				</button>
+				<button onClick={() => setName('toyota')}>
+					<SiToyota size='2em' />
+				</button>
+				<button onClick={() => setName('volvo')}>
+					<SiVolvo size='2em' />
+				</button>
 			</div>
 			<div className='table'>
 				<table>
@@ -105,11 +136,15 @@ const UpdateCars = () => {
 											placeholder='Gamybos metai'
 											onChange={(e) => setNewProduction(e.target.value)}
 										/>
-										<button onClick={() => handleClick(item.id)}>Change</button>
+										<Button style='simple' handleClick={() => handleClick(item.id)}>
+											Pakeisti
+										</Button>
 									</div>
 								</td>
 								<td>
-									<button onClick={() => deleteItem(item.id)}>Delete</button>
+									<button className='delButton' onClick={() => deleteItem(item.id)}>
+										<AiFillDelete size='1.5rem' color='red' />
+									</button>
 								</td>
 							</tr>
 						))}

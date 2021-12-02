@@ -11,6 +11,7 @@ const Login = () => {
 	return (
 		<div>
 			<Header>
+				<h1>Automobilių atsiliepimai</h1>
 				<div className='navigation'>
 					<Link className='link' to='/'>
 						Home
@@ -56,7 +57,6 @@ const Login = () => {
 						placeholder='@gmail.com'
 						required
 						onChange={(e) => setUserInput({ ...userImput, email: e.target.value.trim().toLowerCase() })}
-						finally={(e) => e.target.reset()}
 					/>
 				</div>
 				<div>
