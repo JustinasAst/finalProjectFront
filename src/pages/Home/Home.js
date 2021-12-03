@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
+import Footer from '../../component/footer/Footer';
 import { getUser } from '../../context/user';
 import { Link, generatePath, useNavigate } from 'react-router-dom';
 import { NewStar, Header, FilterField, Button } from '../index';
@@ -18,6 +19,7 @@ const Home = () => {
 		navigate('/login');
 	};
 
+	// Get cars by name. Map data and create link to comments section
 	useEffect(() => {
 		fetch(`${process.env.REACT_APP_API_URL}/v1/company/filter/${name}`)
 			.then((res) => res.json())

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { getUser } from '../../context/user';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Header, UpdateCars, Button } from '../index';
@@ -24,17 +25,19 @@ const AddCars = () => {
 		formData.append('production_years', production_years);
 		formData.append('foto', foto);
 
+		//Crate form to add new cars
 		fetch(`${process.env.REACT_APP_API_URL}/v1/company`, {
 			method: 'POST',
 			body: formData,
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				if (data) {
+				if (!data.lenght + 1) {
 					navigate('/addcars');
+					toast.success('Car is added');
 				}
-				console.log('Success:', data);
-				toast.success('Car is added');
+				console.log(getUser());
+
 				setName('');
 				setModel('');
 				setDescription('');
@@ -64,7 +67,7 @@ const AddCars = () => {
 					</Link>
 				</div>
 			</Header>
-			<form onSubmit={submitInput}>
+			<form className='form' onSubmit={submitInput}>
 				<div className='inputbox'>
 					<label>Brandas:</label>
 					<select value={name} onChange={(e) => setName(e.target.value)}>
@@ -74,16 +77,17 @@ const AddCars = () => {
 						<option value='Volkswagen'>Volkswagen</option>
 						<option value='Skoda'>Skoda</option>
 						<option value='Citroen'>Citroen</option>
-						<option value='Dodge'>Dodge</option>
+						<option value='Porsche'>Porsche</option>
 						<option value='Honda'>Honda</option>
 						<option value='Hyundai'>Hyundai</option>
 						<option value='Jeep'>Jeep</option>
 						<option value='Lexus'>Lexus</option>
 						<option value='Mazda'>Mazda</option>
-						<option value='Mercedes Benz'>Mercedes Benz</option>
+						<option value='Mercedes'>Mercedes Benz</option>
 						<option value='Nissan'>Nissan</option>
 						<option value='Opel'>Opel</option>
 						<option value='Toyota'>Toyota</option>
+						<option value='Volvo'>Volvo</option>
 					</select>
 				</div>
 				<div className='inputbox'>
@@ -94,6 +98,7 @@ const AddCars = () => {
 						value={model}
 						placeholder='Modelis'
 						id='model'
+						required
 						onChange={(e) => setModel(e.target.value)}
 					/>
 				</div>
@@ -106,6 +111,7 @@ const AddCars = () => {
 						value={production_years}
 						id='production_yers'
 						placeholder='2008-2012'
+						required
 						onChange={(e) => setProduction_years(e.target.value)}
 					/>
 				</div>
@@ -117,20 +123,22 @@ const AddCars = () => {
 						value={description}
 						id='description'
 						placeholder='Trumpa informacija apie automobilį'
+						required
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</div>
-
-				<label className='uploadLabel'>
+				<div className='upload'>
+					<label for='fileUpload'>Pasirinkite nuotrauką</label>
 					<input
+						className='fotoUpload'
+						placeholder='Pasirinkite nuotrauką'
 						type='file'
 						name='foto'
 						id='foto'
+						required
 						onChange={(e) => setFoto(e.target.files[0])}
-						className='uploadButton'
 					/>
-					Įkelti nuotrauka
-				</label>
+				</div>
 
 				<Button type='submit' style='brand-outline'>
 					Submit

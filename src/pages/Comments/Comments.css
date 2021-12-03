@@ -64,13 +64,17 @@
 }
 .deleteDiv {
 	text-align: right;
+	margin-top: -0.5rem;
 }
 .deleteDiv button {
-	margin-right: 0.5rem;
 	background: none;
 	border-radius: 50%;
-	color: rgb(233, 32, 10);
+	color: white;
 	border: 2px solid white;
-	background: white;
 	cursor: pointer;
+	margin-top: -2rem;
+	margin-right: -1.5rem;
+	background: red;
+	padding-top: 6px;
+	padding-bottom: 3px;
 }

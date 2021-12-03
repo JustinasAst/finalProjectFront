@@ -22,6 +22,7 @@
 }
 .carsBox {
 	width: 100%;
+	margin-bottom: 1rem;
 }
 .HomeButton button {
 	width: 55%;

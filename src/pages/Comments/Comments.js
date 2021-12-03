@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useResource } from '../../hooks/useResource';
 import { toast } from 'react-toastify';
 import { NewStar, Button, Header } from '../index';
-import { AiFillDelete } from 'react-icons/ai';
+import { ImCross } from 'react-icons/im';
 import Select from '../../component/Select/Select';
 import './Comments.css';
 
@@ -15,6 +15,7 @@ const Comments = () => {
 	const { data: comments, refresh } = useResource(`company/${companyId}/comments`);
 	const [comment, setComment] = useState();
 
+	//Delete comments where user is registrate
 	const deleteItem = (id) => {
 		fetch(`${process.env.REACT_APP_API_URL}/v1/company/${companyId}/comments/${id}`, {
 			method: 'DELETE',
@@ -30,6 +31,7 @@ const Comments = () => {
 			.then((data) => alert('Automobilis istrintas'));
 	};
 
+	// Create form which can use just regitrated user
 	let form = null;
 
 	if (getUser()) {
@@ -125,8 +127,8 @@ const Comments = () => {
 					<div className='commentBox' key={comment.id}>
 						<div className='deleteDiv'>
 							{getUser() && comment.users_id === getUser().id ? (
-								<button onClick={() => deleteItem(comment.id)}>
-									<AiFillDelete size='1.2rem' />
+								<button className='commentBtn' onClick={() => deleteItem(comment.id)}>
+									<ImCross size='1.2rem' />
 								</button>
 							) : (
 								''

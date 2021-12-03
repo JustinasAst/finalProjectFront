@@ -13,6 +13,7 @@ const UpdateCars = () => {
 	const [name, setName] = useState('audi');
 	const [newProduction, setNewProduction] = useState('');
 
+	//Create form to update and delete cars from table
 	useEffect(() => {
 		fetch(`${process.env.REACT_APP_API_URL}/v1/company/filter/${name}`)
 			.then((res) => res.json())
@@ -74,7 +75,7 @@ const UpdateCars = () => {
 				<button onClick={() => setName('citroen')}>
 					<SiCitroen size='2em' />
 				</button>
-				<button onClick={() => setName('dodge')}>
+				<button onClick={() => setName('porsche')}>
 					<SiPorsche size='2em' />
 				</button>
 				<button onClick={() => setName('honda')}>
@@ -90,7 +91,7 @@ const UpdateCars = () => {
 				<button onClick={() => setName('jeep')}>
 					<SiJeep size='2em' />
 				</button>
-				<button onClick={() => setName('mercedes Benz')}>
+				<button onClick={() => setName('mercedes')}>
 					<SiMercedes size='2em' />
 				</button>
 				<button onClick={() => setName('nissan')}>

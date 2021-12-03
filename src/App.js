@@ -1,4 +1,5 @@
 import './App.css';
+import Footer from './component/footer/Footer';
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './privateRoute/PrivateRoute';
@@ -23,6 +24,7 @@ function App() {
 					</Routes>
 				</Suspense>
 			</Router>
+			<Footer />
 		</div>
 	);
 }

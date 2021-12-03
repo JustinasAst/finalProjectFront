@@ -1,12 +1,3 @@
-form {
-	width: 65%;
-	border: none;
-	border-radius: 10px;
-	background: #c3ccdb;
-	padding: 1rem;
-	margin: 0 auto;
-}
-
 label {
 	font-size: large;
 	font-weight: 600;
