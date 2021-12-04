@@ -35,14 +35,14 @@ const Register = () => {
 						})
 							.then((res) => res.json())
 							.then((data) => {
-								setUserInputs('');
-								if (data.affectedRows !== 1) {
+								if (data) {
 									console.log(data);
-									return toast.error('Something went wrong, please try again');
+									return toast.success('Succsess registered!');
 								}
-								toast.success('Succsess registered!');
+								toast.error('Something went wrong, please try again');
 							})
-							.catch((err) => toast.error('Šitas adresas yra užimtas'));
+							.catch((err) => toast.error('Šitas adresas yra užimtas'))
+							.finally(() => e.target.reset());
 					}}
 				>
 					<div>

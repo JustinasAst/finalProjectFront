@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getUser } from '../../context/user';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -15,6 +15,10 @@ const Comments = () => {
 	const { data: comments, refresh } = useResource(`company/${companyId}/comments`);
 	const [comment, setComment] = useState();
 
+	useEffect(() => {
+		refresh();
+	}, [refresh]);
+
 	//Delete comments where user is registrate
 	const deleteItem = (id) => {
 		fetch(`${process.env.REACT_APP_API_URL}/v1/company/${companyId}/comments/${id}`, {
@@ -28,7 +32,16 @@ const Comments = () => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => alert('Automobilis istrintas'));
+			.then((data) => {
+				if (data) {
+					toast.success('Komentaras išrintas');
+					refresh();
+				}
+				if (!data) {
+					toast.error('Kažkas nutiko, bandykite dar karta');
+				}
+			})
+			.catch((err) => alert(err.message));
 	};
 
 	// Create form which can use just regitrated user
@@ -52,7 +65,7 @@ const Comments = () => {
 						.then((res) => res.json())
 						.then((data) => {
 							if (data) {
-								toast.success('Added');
+								toast.success('Komentaras pridetas');
 								refresh();
 							}
 							if (!data) {

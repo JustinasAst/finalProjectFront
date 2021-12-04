@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { getUser } from '../../context/user';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { Header, UpdateCars, Button } from '../index';
 import './AddCars.css';
 
@@ -13,7 +12,9 @@ const AddCars = () => {
 	const [production_years, setProduction_years] = useState();
 	const [foto, setFoto] = useState();
 
-	let navigate = useNavigate();
+	const refreshPage = () => {
+		window.location.reload(false);
+	};
 
 	const submitInput = (e) => {
 		e.preventDefault();
@@ -32,9 +33,9 @@ const AddCars = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				if (!data.lenght + 1) {
-					navigate('/addcars');
-					toast.success('Car is added');
+				if (data.lenght + 1) {
+					toast.success('Automobilis pridėtas');
+					refreshPage();
 				}
 				console.log(getUser());
 

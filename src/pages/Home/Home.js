@@ -36,15 +36,25 @@ const Home = () => {
 
 	return (
 		<div>
+			{/* {getUser() && getUser().id === 6 ? <h1>labas</h1> : <h1>iki</h1>} */}
 			<Header>
 				<h1>Automobilių atsiliepimai</h1>
 				<div className='navigation'>
-					<Link className='link' to='/addcars'>
-						Add Cars
+					{getUser() && getUser().id === 6 ? (
+						<Link className='link' to='/register'>
+							Register
+						</Link>
+					) : (
+						''
+					)}
+					<Link className='link' to='/'>
+						Home
 					</Link>
+
 					<Link className='link' to='/register'>
 						Register
 					</Link>
+
 					<Link className='link' to='/login'>
 						Login
 					</Link>
