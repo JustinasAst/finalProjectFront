@@ -75,7 +75,7 @@ const Home = () => {
 						<button onClick={() => setName('citroen')}>
 							<SiCitroen size='2em' />
 						</button>
-						<button onClick={() => setName('dodge')}>
+						<button onClick={() => setName('porsche')}>
 							<SiPorsche size='2em' />
 						</button>
 						<button onClick={() => setName('honda')}>
