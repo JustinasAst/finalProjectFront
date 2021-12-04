@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { getUser } from '../../context/user';
 import { Link } from 'react-router-dom';
 import { Header, UpdateCars, Button } from '../index';
 import './AddCars.css';
@@ -37,8 +36,6 @@ const AddCars = () => {
 					toast.success('Automobilis pridėtas');
 					refreshPage();
 				}
-				console.log(getUser());
-
 				setName('');
 				setModel('');
 				setDescription('');

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';
 import { Header, Button } from '../index';
 import { setUser } from '../../context/user';
@@ -38,13 +39,13 @@ const Login = () => {
 						.then((data) => {
 							if (data.err) {
 								navigate('/login');
-								alert('Blogas Email arba slaptažodis');
+								toast.error('Patikrinkite prisijungimo duomenis');
 								return;
 							} else {
+								toast.success('Prisijungėte sėkmingai');
 							}
-							console.log(data.token);
+
 							setUser(data);
-							console.log(data);
 						})
 						.catch((err) => alert(err.message))
 						.finally(() => e.target.reset(), navigate('/'));

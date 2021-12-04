@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import { SiBmw, SiAudi, SiVolkswagen, SiSkoda, SiCitroen, SiHonda, SiHyundai, SiJeep, SiMazda } from 'react-icons/si';
 import { SiMercedes, SiNissan, SiOpel, SiToyota, SiVolvo, SiPorsche } from 'react-icons/si';
 import { AiFillDelete } from 'react-icons/ai';
@@ -8,8 +7,6 @@ import { Button } from '../index';
 import './UpdateCarasTable.css';
 
 const UpdateCars = () => {
-	let navigate = useNavigate();
-
 	const [newData, setData] = useState([]);
 	const [name, setName] = useState('audi');
 	const [newProduction, setNewProduction] = useState('');
@@ -23,7 +20,6 @@ const UpdateCars = () => {
 		fetch(`${process.env.REACT_APP_API_URL}/v1/company/filter/${name}`)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
 				if (!data) {
 					return alert('error');
 				}

@@ -36,7 +36,6 @@ const Register = () => {
 							.then((res) => res.json())
 							.then((data) => {
 								if (data) {
-									console.log(data);
 									return toast.success('Succsess registered!');
 								}
 								toast.error('Something went wrong, please try again');

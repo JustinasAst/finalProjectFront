@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
-import Footer from '../../component/footer/Footer';
 import { getUser } from '../../context/user';
 import { Link, generatePath, useNavigate } from 'react-router-dom';
 import { NewStar, Header, FilterField, Button } from '../index';
@@ -24,35 +23,24 @@ const Home = () => {
 		fetch(`${process.env.REACT_APP_API_URL}/v1/company/filter/${name}`)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
-				if (!data) {
-					console.log('nieko nera');
-				} else {
-					console.log('labas');
-				}
 				setData(data);
 			});
 	}, [name]);
 
 	return (
 		<div>
-			{/* {getUser() && getUser().id === 6 ? <h1>labas</h1> : <h1>iki</h1>} */}
 			<Header>
 				<h1>Automobilių atsiliepimai</h1>
 				<div className='navigation'>
 					{getUser() && getUser().id === 6 ? (
-						<Link className='link' to='/register'>
-							Register
+						<Link className='link' to='/addcars'>
+							Add Car
 						</Link>
 					) : (
 						''
 					)}
 					<Link className='link' to='/'>
 						Home
-					</Link>
-
-					<Link className='link' to='/register'>
-						Register
 					</Link>
 
 					<Link className='link' to='/login'>
