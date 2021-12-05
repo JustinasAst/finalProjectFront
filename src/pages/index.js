@@ -5,5 +5,5 @@ export { default as Button } from '../component/button/Button';
 export { default as Notification } from '../component/notification/Notification';
 export { default as Header } from '../component/header/Header';
 export { default as UpdateCars } from './UpdateCars/UpdateCars';
-export { default as NewStar } from '../component/Star';
+export { default as NewStar } from '../component/star/Star';
 export { default as FilterField } from '../component/FilterField/FilterField';
