@@ -8,7 +8,8 @@ export const Header = styled.div`
 		text-align: left;
 	}
 	.link {
-		margin-left: 0.5rem;
+		margin-left: 1rem;
+		margin-right: 1rem;
 		font-size: large;
 		text-decoration: none;
 		color: rgb(48, 46, 46);
