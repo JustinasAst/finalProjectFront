@@ -11,9 +11,9 @@ const UpdateCars = () => {
 	const [name, setName] = useState('audi');
 	const [newProduction, setNewProduction] = useState('');
 
-	const refreshPage = () => {
+	/* const refreshPage = () => {
 		window.location.reload(false);
-	};
+	}; */
 
 	//Create form to update and delete cars from table
 	useEffect(() => {
@@ -38,7 +38,7 @@ const UpdateCars = () => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => toast.success('Automobilis pridėtas'), refreshPage());
+			.then((data) => toast.success('Automobilis pridėtas') /* refreshPage() */);
 	};
 	const handleClick = (id) => {
 		fetch(`${process.env.REACT_APP_API_URL}/v1/company/${id}`, {
