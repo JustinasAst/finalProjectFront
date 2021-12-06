@@ -32,7 +32,7 @@ const AddCars = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				if (data.lenght + 1) {
+				if (data) {
 					toast.success('Automobilis pridėtas');
 					refreshPage();
 				}
