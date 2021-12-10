@@ -4,11 +4,11 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './privateRoute/PrivateRoute';
 
-const LazyHome = React.lazy(() => import('./pages/Home/Home'));
-const LazyComments = React.lazy(() => import('./pages/Comments/Comments'));
-const LazyRegister = React.lazy(() => import('./pages/Register/Register'));
-const LazyLogin = React.lazy(() => import('./pages/Login/Login'));
-const LazyAddCars = React.lazy(() => import('./pages/AddCars/AddCars'));
+const LazyHome = React.lazy(() => import('./pages/home/Home'));
+const LazyComments = React.lazy(() => import('./pages/comments/Comments'));
+const LazyRegister = React.lazy(() => import('./pages/register/Register'));
+const LazyLogin = React.lazy(() => import('./pages/login/Login'));
+const LazyAddCars = React.lazy(() => import('./pages/addCars/AddCars'));
 
 function App() {
 	return (

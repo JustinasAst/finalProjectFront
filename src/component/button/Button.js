@@ -14,6 +14,7 @@ const Button = ({ children, style, type, handleClick }) => {
 			border = 'blue';
 			text = 'Black';
 			break;
+
 		case 'logout':
 			background = 'transparent';
 			text = 'white';

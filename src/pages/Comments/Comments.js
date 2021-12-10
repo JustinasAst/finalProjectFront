@@ -6,7 +6,7 @@ import { useResource } from '../../hooks/useResource';
 import { toast } from 'react-toastify';
 import { NewStar, Button, Header } from '../index';
 import { ImCross } from 'react-icons/im';
-import Select from '../../component/Select/Select';
+import Select from '../../component/select/Select';
 import './Comments.css';
 
 const Comments = () => {
