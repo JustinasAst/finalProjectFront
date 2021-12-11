@@ -1,7 +1,5 @@
 import React from 'react';
 
-// I know, not the best way to use case method, but it still works. I will fix in the future.
-
 const NewStar = ({ value, children }) => {
 	switch (parseFloat(value)) {
 		case 1:
